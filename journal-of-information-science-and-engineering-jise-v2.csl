@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="in-text" default-locale="en-US" page-range-format="expanded">
+  <info>
+    <title>Journal of Information Science and Engineering (JISE) - Custom Numeric v2</title>
+    <title-short>JISE Numeric v2</title-short>
+    <id>https://raw.githubusercontent.com/MiladMHB7/jise-citation-style/main/journal-of-information-science-and-engineering-jise-v2.csl</id>
+    <link href="https://raw.githubusercontent.com/MiladMHB7/jise-citation-style/main/journal-of-information-science-and-engineering-jise-v2.csl" rel="self"/>
+    <link href="https://jise.iis.sinica.edu.tw/pages/authors/preparation.html#references" rel="documentation"/>
+    <category citation-format="numeric"/>
+    <category field="engineering"/>
+    <summary>Independent JISE numeric style calibrated against the official five reference examples and the supplied JISE Word template. Full author lists with contextual serial commas; DOI and URL excluded from bibliography; journal type rules govern. Article-number and other unspecified cases are conservative fallbacks. Not an official journal-issued style.</summary>
+    <updated>2026-10-13T00:00:00+00:00</updated>
+  </info>
+  <locale xml:lang="en-US">
+    <style-options punctuation-in-quote="true"/>
+    <terms>
+      <term name="and">and</term>
+      <term name="editor" form="short">
+        <single>ed.</single>
+        <multiple>eds.</multiple>
+      </term>
+    <term name="page-range-delimiter">-</term></terms>
+  </locale>
+  <macro name="authors">
+    <names variable="author">
+      <name initialize-with=". " and="text" delimiter=", " delimiter-precedes-last="contextual"/>
+      <substitute>
+        <names variable="editor">
+          <name initialize-with=". " and="text" delimiter=", " delimiter-precedes-last="contextual"/>
+        </names>
+      </substitute>
+    </names>
+  </macro>
+  <macro name="editors-in-chapter">
+    <names variable="editor">
+      <name initialize-with=". " and="text" delimiter=", " delimiter-precedes-last="contextual"/>
+      <label form="short" prefix=", (" suffix=")"/>
+    </names>
+  </macro>
+  <macro name="year">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+  <macro name="pages">
+    <choose>
+      <if variable="page">
+        <group delimiter=" ">
+          <text value="pp."/>
+          <text variable="page"/>
+        </group>
+      </if>
+    </choose>
+  </macro>
+  <macro name="journal-volume">
+    <group delimiter=" ">
+      <text value="Vol."/>
+      <number variable="volume"/>
+    </group>
+  </macro>
+  <macro name="report-type">
+    <choose>
+      <if variable="genre">
+        <text variable="genre"/>
+      </if>
+      <else>
+        <text value="Technical Report"/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="reference">
+    <choose>
+      <!-- The journal article format follows the first JISE example. -->
+      <if type="article-journal">
+        <group delimiter=", ">
+          <text macro="authors"/>
+          <text variable="title" quotes="true"/>
+          <text variable="container-title" font-style="italic"/>
+          <text macro="journal-volume"/>
+          <text macro="year"/>
+          <text macro="pages"/>
+        </group>
+      </if>
+      <!-- The book format follows the second JISE example. -->
+      <else-if type="book">
+        <group delimiter=", ">
+          <text macro="authors"/>
+          <text variable="title" font-style="italic"/>
+          <text variable="publisher"/>
+          <text variable="publisher-place"/>
+          <text macro="year"/>
+        </group>
+      </else-if>
+      <!-- The conference paper format follows the third JISE example. -->
+      <else-if type="paper-conference">
+        <group delimiter=", ">
+          <text macro="authors"/>
+          <text variable="title" quotes="true"/>
+          <group delimiter=" ">
+            <text value="in"/>
+            <text variable="container-title" font-style="italic"/>
+          </group>
+          <text macro="year"/>
+          <text macro="pages"/>
+        </group>
+      </else-if>
+      <!-- The technical report format follows the fourth JISE example. -->
+      <else-if type="report">
+        <group delimiter=", ">
+          <text macro="authors"/>
+          <text variable="title" quotes="true"/>
+          <text macro="report-type"/>
+          <text variable="number"/>
+          <text variable="publisher"/>
+          <text variable="publisher-place"/>
+          <text macro="year"/>
+        </group>
+      </else-if>
+      <!-- The edited-book chapter format follows the fifth JISE example. -->
+      <else-if type="chapter">
+        <group delimiter=", ">
+          <text macro="authors"/>
+          <text variable="title" quotes="true"/>
+          <group delimiter=" ">
+            <text value="in"/>
+            <text macro="editors-in-chapter"/>
+          </group>
+          <text variable="container-title" font-style="italic"/>
+          <text variable="publisher"/>
+          <text variable="publisher-place"/>
+          <text macro="year"/>
+          <text macro="pages"/>
+        </group>
+      </else-if>
+      <!-- The author instructions do not supply an example for other item types. -->
+      <!-- No examples for other types: use neutral bibliographic fallback without DOI/URL, consistent with template. --><else>
+        <group delimiter=", ">
+          <text macro="authors"/>
+          <text variable="title" quotes="true"/>
+          <text variable="container-title" font-style="italic"/>
+          <text variable="publisher"/>
+          <text variable="publisher-place"/>
+          <text macro="year"/>
+          <text macro="pages"/>
+          </group>
+      </else>
+    </choose>
+  </macro>
+  <citation>
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="[" suffix="]" delimiter=", ">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+  <bibliography entry-spacing="0" line-spacing="1" hanging-indent="true">
+    <layout suffix=".">
+      <text variable="citation-number" suffix=". "/>
+      <text macro="reference"/>
+    </layout>
+  </bibliography>
+</style>
